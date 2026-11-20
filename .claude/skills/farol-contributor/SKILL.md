@@ -17,6 +17,7 @@ Use this skill for every contribution to `snowztech/farol` from `darizae/farol`.
 ## Branches, permissions, and private knowledge
 
 - Confirm `origin` is `darizae/farol`, and `upstream` is `snowztech/farol`. Never push to `upstream`.
+- The fork's `main` can lag `upstream/main`, which makes GitHub's fork-side compare of an issue branch fold unrelated upstream commits into the diff. Before starting, fast-forward the fork's `main` (never force): first `git fetch upstream main`, then confirm it is a fast-forward with `git merge-base --is-ancestor origin/main upstream/main`, then `git push origin upstream/main:main`. This only moves `darizae/farol:main`; it never touches `upstream`.
 - Begin each issue from a freshly fetched `upstream/main`: `git fetch upstream main`. The maintainer's post-review fixes to PR #337 are already merged, so **do not** branch from the old `feat/copy-file-paths` or stale fork `main`.
 - One issue per branch. Inspect `git status --short` before switching; do not stash, reset, overwrite, cherry-pick, rebase or force-push another person's work to get around a dirty checkout.
 - The installed skill files `.agents/skills/farol-contributor/SKILL.md` and `.claude/skills/farol-contributor/SKILL.md` and the personal file `.farol-local/swift-findings.md` are **local-only on code branches**. Ignore them using this checkout's `$(git rev-parse --git-path info/exclude)`, not a tracked `.gitignore`. Before any feature commit verify none appears in `git diff --cached --name-only`.
