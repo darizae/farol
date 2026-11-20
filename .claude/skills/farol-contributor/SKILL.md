@@ -47,6 +47,8 @@ Use this skill for every contribution to `snowztech/farol` from `darizae/farol`.
   ```
 
   A successful `make run` proves build and launch only, not that the interaction was tested. Verify the affected UI manually when GUI control exists. Otherwise state clearly which manual Mac checks the user must perform. A restarted instance is essential; `open` can activate an older build.
+
+  Prefer `~/bin/farol-run` over `make run`: it quits the debug app, syncs the release app's settings into the debug domain, then runs `make run`. Plain `make run` leaves a running instance in place and `open` just activates the older build, so the new binary is not what you see. If you did use `make run`, confirm the running PID started after the build before claiming a UI check.
 - For sidebar changes, check at least two projects, expanded and collapsed, multiple sessions, light and dark themes, narrow sidebar/long names, session selection via clicks **and external navigation**, drag/drop and hover. Capture before/after screenshots outside the repo when possible.
 - For Git-graph changes, reproduce with temporary local/bare Git repositories, distinguish `refs/remotes` from actual server branches, and verify graph state after fetch and other refresh paths. Use the Farol Inspector (`Option-Command-I`) for Git calls and responsiveness if accessible.
 - Review staged and committed diffs for unintended regressions or removed assertions. Verify each new test tests behavior, not just a helper that happens to exist. Run `git diff --check upstream/main...HEAD` after committing.
